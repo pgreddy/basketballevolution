@@ -1,0 +1,6 @@
+x[1]
+x[2]
+float(x[1])/x[2] if x[2] else 0
+x[3]
+x[4]
+float(x[3])/x[4] if x[4] else 0
