@@ -8,12 +8,13 @@ data_full = np.genfromtxt('../../../data/data_v1/final/training_data_v1_final.cs
 
 # Remove the first two columns which include data
 training = data_full[:,2:]
-#pdb.set_trace()
 
 #Run clustering algorithm
-cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')  
+cluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')  
 cluster.fit_predict(training) 
 print(cluster.labels_)
+
+#pdb.set_trace()
 
 #Plots for dendograms
 #plt.figure(figsize=(10, 7))  
