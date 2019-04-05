@@ -1,2 +1,0 @@
-x[1]
-float(x[1])/x[2] if x[2] else 0
