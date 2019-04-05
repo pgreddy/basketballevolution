@@ -1,6 +1,7 @@
-x[1]
-x[2]
-float(x[1])/x[2] if x[2] else 0
-x[3]
-x[4]
-float(x[3])/x[4] if x[4] else 0
+x[1]                                        # jump shots made
+x[2]                                        # jump shots missed
+float(x[1])/(x[1] + x[2]) if x[2] else 0    # jump shots percentage
+x[3]                                        # close shots made
+x[4]                                        # close shots missed
+float(x[3])/(x[3] + x[4]) if x[4] else 0    # close shots percentage
+x[5]                                        # free throws attempted
