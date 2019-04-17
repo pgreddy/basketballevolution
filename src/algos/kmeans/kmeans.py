@@ -7,3 +7,6 @@ training = data_full[:,2:]
 kmeans = KMeans(n_clusters=10).fit(training)
 print(kmeans.labels_)
 print(kmeans.inertia_)
+
+# For debugging:
+#import pdb; pdb.set_trace()
