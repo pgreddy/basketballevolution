@@ -11,11 +11,8 @@ data_full = np.genfromtxt('../../../data/data_v1/final/training_data_v1_final.cs
 
 # Remove the first two columns which include data
 training = data_full[0:9,2:]
-#training = data_full[:,2:]
-   
-#pdb.set_trace()
 
-def cross_validate( data, cluster_method = "agglomerative", folds = 5, metric = "silhouette"):
+def cross_validate( data, cluster, folds = 5, metric = "silhouette"):
 	# initialize return values and index variable
 	kf = KFold(n_splits=folds)
 	kf.get_n_splits(data)
@@ -30,11 +27,9 @@ def cross_validate( data, cluster_method = "agglomerative", folds = 5, metric = 
 
 		X_train, X_test = data[train_index], data[test_index]
 		
-		# train model on training set, using specific clustering method, and get predicted labels for test data
-		if cluster_method == "agglomerative":
-			cluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')  
-			cluster.fit(X_train) 
-			cluster_labels = cluster.labels_
+		# train model on training set and get predicted labels for test data
+		cluster.fit(X_train) 
+		cluster_labels = cluster.labels_
 		
 		# evaluate predicted labels using the metric specified (default is silhouette)
 		if metric == "silhouette":
@@ -48,5 +43,8 @@ def cross_validate( data, cluster_method = "agglomerative", folds = 5, metric = 
 	return st.mean(score);
 
 #Run clustering algorithm
-score = cross_validate(training, cluster_method = "agglomerative", folds = 2, metric = "silhouette")
+score = cross_validate(training, 
+						AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward'), 
+						folds = 2, 
+						metric = "silhouette")
 print(score)
