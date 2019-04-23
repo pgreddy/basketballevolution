@@ -14,7 +14,7 @@ training = data_full[:,2:]
 # TODO:
 #   Turn this into a function, num_components and k should be arguments
 num_components = 5;
-k = 10;
+k = 3;
 pca, trans_data = pca_util.get_pca(num_components, training)
 kmeans = KMeans(n_clusters=k).fit(trans_data)
 print(kmeans.labels_)
