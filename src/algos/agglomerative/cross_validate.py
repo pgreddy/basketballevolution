@@ -4,31 +4,49 @@ import pandas as pd
 from sklearn import metrics
 import scipy.cluster.hierarchy as shc
 import pdb
+from sklearn.model_selection import KFold
+import statistics as st
 
 data_full = np.genfromtxt('../../../data/data_v1/final/training_data_v1_final.csv', delimiter=',')
 
 # Remove the first two columns which include data
-training = data_full[:,2:]
-
+training = data_full[0:9,2:]
+#training = data_full[:,2:]
+   
 #pdb.set_trace()
 
-def cross_validate( data, cluster_method = "agglomerative", folds = 5, metric = "silhouette"):   
-	# train model on training set, using specific clustering method, and get predicted labels for test data
-	if cluster_method == "agglomerative":
-		cluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')  
-		cluster.fit_predict(training) 
-		cluster_labels = cluster.labels_
+def cross_validate( data, cluster_method = "agglomerative", folds = 5, metric = "silhouette"):
+	# initialize return values and index variable
+	kf = KFold(n_splits=folds)
+	kf.get_n_splits(data)
 	
-	# evaluate predicted labels using the metric specified (default is silhouette)
-	if metric == "silhouette":
-		sample_size = 300
-		score = metrics.silhouette_score(data, cluster_labels,
-										metric='euclidean',
-                                    	sample_size=sample_size)
+	i = 0
+	score = np.zeros(folds)
 	
-	# return cross-validated silhouette score
-	return score;
+	# run through each fold in kf
+	for train_index, test_index in kf.split(data):
+		print("iter: %.3f" % i)
+		print("TRAIN:", train_index, "TEST:", test_index)
+
+		X_train, X_test = data[train_index], data[test_index]
+		
+		# train model on training set, using specific clustering method, and get predicted labels for test data
+		if cluster_method == "agglomerative":
+			cluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')  
+			cluster.fit(X_train) 
+			cluster_labels = cluster.labels_
+		
+		# evaluate predicted labels using the metric specified (default is silhouette)
+		if metric == "silhouette":
+			sample_size = 300
+			score[i] = metrics.silhouette_score(X_train, cluster_labels, #TODO: we want this to be X_test!!
+											metric='euclidean',
+											sample_size=sample_size)
+		i = i+1
+		
+	# return cross-validated score
+	return st.mean(score);
 
 #Run clustering algorithm
-score = cross_validate(training, cluster_method = "agglomerative", folds = 5, metric = "silhouette")
+score = cross_validate(training, cluster_method = "agglomerative", folds = 2, metric = "silhouette")
 print(score)
