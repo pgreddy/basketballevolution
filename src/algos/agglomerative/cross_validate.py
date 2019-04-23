@@ -10,9 +10,9 @@ import statistics as st
 data_full = np.genfromtxt('../../../data/data_v1/final/training_data_v1_final.csv', delimiter=',')
 
 # Remove the first two columns which include data
-training = data_full[0:9,2:]
+training = data_full[0:60,2:]
 
-def cross_validate( data, cluster, folds = 5, metric = "silhouette"):
+def cross_validate( data, cluster, folds = 5, metric = "silhouette", debug_print = "off"):
 	# initialize return values and index variable
 	kf = KFold(n_splits=folds)
 	kf.get_n_splits(data)
@@ -22,8 +22,9 @@ def cross_validate( data, cluster, folds = 5, metric = "silhouette"):
 	
 	# run through each fold in kf
 	for train_index, test_index in kf.split(data):
-		print("iter: %.3f" % i)
-		print("TRAIN:", train_index, "TEST:", test_index)
+		if debug_print == "on":
+			print("iter: %.3f" % i)
+			print("TRAIN:", train_index, "TEST:", test_index)
 
 		X_train, X_test = data[train_index], data[test_index]
 		
@@ -45,6 +46,7 @@ def cross_validate( data, cluster, folds = 5, metric = "silhouette"):
 #Run clustering algorithm
 score = cross_validate(training, 
 						AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward'), 
-						folds = 2, 
-						metric = "silhouette")
+						folds = 5, 
+						metric = "silhouette",
+						debug_print = "off")
 print(score)
