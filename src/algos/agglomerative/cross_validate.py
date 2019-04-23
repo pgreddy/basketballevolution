@@ -14,7 +14,7 @@ training = data_full[0:60,2:]
 
 def cross_validate( data, cluster, folds = 5, metric = "silhouette", debug_print = "off"):
 	# initialize return values and index variable
-	kf = KFold(n_splits=folds)
+	kf = KFold(n_splits=folds, shuffle = True)
 	kf.get_n_splits(data)
 	
 	i = 0
