@@ -13,13 +13,15 @@ data_full = np.genfromtxt('../../../data/data_v1/final/training_data_v1_final.cs
 # Remove the first two columns which include data
 training = data_full[0:60,2:]
 
-def cross_validate( data, cluster, folds = 5, metric = "silhouette", debug_print = "off"):
+def cross_validate( data, cluster, folds = 5, metric = "silhouette", sample_size = 300, debug_print = "off"):
 	# initialize return values
 	i = 0
 	score = np.zeros(folds)
-	sample_size = 300
 	
 	if folds < 2:
+		if debug_print == "on":
+			print("just one fold")
+
 		# train model on training set and get predicted labels for test data
 		cluster.fit(data) 
 		cluster_labels = cluster.labels_
@@ -43,8 +45,8 @@ def cross_validate( data, cluster, folds = 5, metric = "silhouette", debug_print
 			X_train, X_test = data[train_index], data[test_index]
 		
 			# train model on training set and get predicted labels for test data
-			cluster.fit(X_train) 
-			cluster_labels = cluster.labels_
+			cluster.fit(X_train)
+			cluster_labels = cluster.predict(X_test)
 		
 			# evaluate predicted labels using the metric specified (default is silhouette)
 			if metric == "silhouette":
@@ -62,6 +64,7 @@ score = cross_validate(training,
 						folds = 1, 
 						metric = "silhouette",
 						debug_print = "off")
+print(score)
 
 score = cross_validate(training, 
 						KMeans(n_clusters=3), 
