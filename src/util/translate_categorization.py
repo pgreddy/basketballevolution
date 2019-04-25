@@ -35,11 +35,18 @@ for data_file in data_files:
             messagetype = els[2]
 
             # els[3] is event number within set (unused)
-            # els[4] is game id (unused)
+            # els[4] is game id
+            gameid = els[4]
+
             # els[5] is home description of event (unused)
             # els[6] is neutral description of event (unused)
-            # els[7] is play clock time (unused)
-            # els[8] is period (unused)
+            # els[7] is play clock time
+            playtime = els[7]
+            playtimeels = playtime.split(':')
+
+            # els[8] is period
+            period = els[8]
+
             # els[9] is person 1 type (unused)
             # els[10] is person 2 type (unused)
             # els[11] is person 3 type (unused)
@@ -70,10 +77,13 @@ for data_file in data_files:
 
             # els[31] is score margin (unused)
             # els[32] is visitor description of event (unused)
-            # els[33] is clock time (unused)
+            # els[33] is clock time
+            clktime = els[33]
 
+            # computed calculated events
             newevent = categories.get((actiontype, messagetype), '0')
-            outfile.write(p1id + ', ' + p2id + ', ' + newevent + ', ' + gmscore + '\n')
-        
-
-
+            try:
+                timerem = str((4 - int(period)) * 720 + (12 - int(playtimeels[0])) * 60 + int(playtimeels[1]))
+            except:
+                timerem = str(-1)
+            outfile.write(p1id + ', ' + p2id + ', ' + newevent + ', ' + gameid + ',' + timerem  + '\n')
