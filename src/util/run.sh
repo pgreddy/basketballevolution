@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$PWD
+DIR=./
 
 AGGLOM_DIR=$DIR/src/algos/agglom
 KMEANS_DIR=$DIR/src/algos/kmeans
@@ -33,13 +33,13 @@ fi
 
 if [ $1 = "agglomerative" ]
 then
-	ALGO=$AGGLOM_DIR/agglomerative.py
+	ALGO=$AGGLOM_DIR/agglom.py
 elif [ $1 = "kmeans" ]
 then
 	ALGO=$KMEANS_DIR/kmeans.py
 elif [ $1 = "mixture" ]
 then
-	ALGO=$MIXMOD_DIR/mixture_models.py
+	ALGO=$MIXMOD_DIR/gaussian.py
 else
 	echo "ERROR: Target algorithm not supported"
 	print_algos_ops
