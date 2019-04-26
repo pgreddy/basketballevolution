@@ -22,12 +22,12 @@ kmeans = KMeans(n_clusters=k).fit(trans_data)
 print(kmeans.labels_)
 print(kmeans.inertia_)
 
-score = ev.cross_validate(training, 
+score = ev.cross_validate(trans_data, 
 			  KMeans(n_clusters=k), 
 			  folds = 3, 
 			  metric = "silhouette",
 			  debug_print = "off")			
 print(score)
 
-viz.visualize(trans_data, kmeans.labels_, two_d = True, three_d = False)
-viz.visualize(trans_data, kmeans.labels_, two_d = False, three_d = True)
+viz.visualize(trans_data, kmeans.labels_, two_d = True, three_d = False, plot_name="kmeans_2d")
+viz.visualize(trans_data, kmeans.labels_, two_d = False, three_d = True, plot_name="kmeans_3d")
