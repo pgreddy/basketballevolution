@@ -16,6 +16,7 @@ k = 3;
 
 # Remove the first two columns which include data
 training = data_full[:,2:]
+training = np.delete(training, [27, 28, 29, 31], 1)
 pca, trans_data = pca_util.get_pca(training)
 
 cluster = GaussianMixture(n_components=k)
@@ -25,9 +26,9 @@ cluster_labels = cluster.predict(trans_data)
 print(cluster_labels)
 
 # test cross-validation script from this file
-score = ev.cross_validate(trans_data, 
-						GaussianMixture(n_components=k), 
-						folds = 3, 
+score = ev.cross_validate(trans_data,
+						GaussianMixture(n_components=k),
+						folds = 3,
 						metric = "silhouette",
 						debug_print = "off")
 print(score)

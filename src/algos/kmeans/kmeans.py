@@ -14,6 +14,8 @@ data_full = np.genfromtxt(data_path, delimiter=',')
 
 # Remove the first two columns which include data
 training = data_full[:,2:]
+training = np.delete(training, [27, 28, 29, 31], 1)
+
 pca, trans_data = pca_util.get_pca(training)
 
 best_score = 0
@@ -30,11 +32,6 @@ for k in range(2, 18): # 2 - 25
         best_score = score
         ideal_k = k;
     scores[k-2] = score
-
-import matplotlib.pyplot as plt
-plt.plot(scores)
-plt.title("sillhouette for different values of k")
-plt.show()
 
 print("ideal k: " + str(ideal_k))
 
