@@ -3,6 +3,8 @@ from mpl_toolkits.mplot3d import Axes3D
 
 def visualize(data, clusters, two_d = True, three_d = False, plot_name="matplot"):
     num_pcs = data.shape[1];
+    fig = plt.figure()
+
     file_name = plot_name + ".png"
     if (two_d and (num_pcs >= 2)):
         plt.scatter(data[:,0], data[:,1], c = clusters)
@@ -10,7 +12,6 @@ def visualize(data, clusters, two_d = True, three_d = False, plot_name="matplot"
         plt.xlabel('PC 1')
         plt.ylabel('PC 2')
     elif(three_d and (num_pcs >= 3)):
-        fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         ax.scatter(data[:,0], data[:,1], data[:,3], c = clusters)
     
@@ -21,8 +22,8 @@ def visualize(data, clusters, two_d = True, three_d = False, plot_name="matplot"
         return
 
     plt.title("Data")
-    plt.show()
 
     plt.savefig(file_name)
+    plt.show()
 
     return
