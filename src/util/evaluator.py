@@ -18,8 +18,8 @@ def cross_validate( data, cluster, folds = 5, metric = "silhouette", sample_size
 		# evaluate predicted labels using the metric specified (default is silhouette)
 		if metric == "silhouette":
 			score[i] = metrics.silhouette_score(data, cluster_labels,
-											metric='euclidean',
-											sample_size=sample_size)
+							    metric='euclidean',
+							    sample_size=sample_size)
 		return st.mean(score);
 
 	# initialize folds variable
@@ -41,8 +41,8 @@ def cross_validate( data, cluster, folds = 5, metric = "silhouette", sample_size
 		# evaluate predicted labels using the metric specified (default is silhouette)
 		if metric == "silhouette":
 			score[i] = metrics.silhouette_score(X_test, cluster_labels,
-											metric='euclidean',
-											sample_size=sample_size)
+							    metric='euclidean',
+							    sample_size=sample_size)
 		i = i+1
 		
 	# return cross-validated score
