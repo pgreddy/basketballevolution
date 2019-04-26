@@ -1,0 +1,1 @@
+attr[4] < 120                                                                   # late game situation (under 2 mins)
