@@ -22,6 +22,6 @@ with open(sys.argv[1]) as featurefile, \
                 if max_feature_vals[i] > 10:
                     final_line = final_line + ',' +  str(float(els[i])/max_feature_vals[i])
                 else:
-                    final_line = final_line + els[i]
+                    final_line = final_line + ',' + els[i]
 
             final_features.write(final_line + '\n')
