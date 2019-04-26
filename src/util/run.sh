@@ -39,7 +39,7 @@ then
 	ALGO=$KMEANS_DIR/kmeans.py
 elif [ $1 = "mixture" ]
 then
-	ALGO=$MIXMOD_DIR/mixture_models.py
+	ALGO=$MIXMOD_DIR/gaussian.py
 else
 	echo "ERROR: Target algorithm not supported"
 	print_algos_ops
