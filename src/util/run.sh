@@ -33,14 +33,12 @@ fi
 
 if [ $1 = "agglomerative" ]
 then
-	# FIXME, use the proper python file
 	ALGO=$AGGLOM_DIR/agglomerative.py
 elif [ $1 = "kmeans" ]
 then
 	ALGO=$KMEANS_DIR/kmeans.py
 elif [ $1 = "mixture" ]
 then
-	# FIXME, use the proper python file
 	ALGO=$MIXMOD_DIR/mixture_models.py
 else
 	echo "ERROR: Target algorithm not supported"
@@ -55,10 +53,6 @@ then
 	print_data_ops
 	exit
 fi
-
-# TODO:
-# make sure algorithms can take data path as input!
-# Also make sure util path is relative from home directory instead of code directory
 
 # algorithm and data is now valid
 python3 $ALGO $DATA
