@@ -1,9 +1,7 @@
 from sklearn.cluster import AgglomerativeClustering
-from sklearn.cluster import KMeans
 import numpy as np
 import pandas as pd
 import scipy.cluster.hierarchy as shc
-import pdb
 import sys
 
 sys.path.append('../../util/')
@@ -29,15 +27,6 @@ score = ev.cross_validate(training,
 						metric = "silhouette",
 						debug_print = "off")
 print(score)
-
-score = ev.cross_validate(training, 
-						KMeans(n_clusters=3), 
-						folds = 3, 
-						metric = "silhouette",
-						debug_print = "off")			
-print(score)
-
-#pdb.set_trace()
 
 #Plots for dendograms
 #plt.figure(figsize=(10, 7))  
