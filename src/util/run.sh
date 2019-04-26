@@ -21,9 +21,9 @@ print_data_ops () {
 	echo -e "\text..."
 }
 
-if [ $# -ne 2 ]
+if [ $# -gt 4 ]
 then
-	echo "ERROR: Input should be: <algorithm> <data version>"
+	echo "ERROR: Input should be: <algorithm> <data version> OR <name_to_id> <name>"
 	echo ""
 	print_algos_ops
 	echo ""
@@ -40,6 +40,10 @@ then
 elif [ $1 = "mixture" ]
 then
 	ALGO=$MIXMOD_DIR/gaussian.py
+elif [ $1 == "name_to_id" ]
+then
+	python3 $DIR/src/util/name_to_id.py $2 $3
+	exit
 else
 	echo "ERROR: Target algorithm not supported"
 	print_algos_ops
