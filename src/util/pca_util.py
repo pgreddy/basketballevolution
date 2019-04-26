@@ -1,8 +1,9 @@
 from sklearn.decomposition import PCA
 
-def get_pca(n_components, data):
+# Use PCA to get 95% of the variance of passed in data
+def get_pca (data):
 
-    pca = PCA(n_components)
+    pca = PCA(n_components=0.95, svd_solver='full')
     trans_data = pca.fit_transform(data)
 
     print('PCA components: ')
