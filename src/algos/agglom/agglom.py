@@ -2,19 +2,31 @@ from sklearn.cluster import AgglomerativeClustering
 import numpy as np
 import pandas as pd
 import scipy.cluster.hierarchy as shc
-import pdb
+import sys
+
+sys.path.append('../../util/')
+
+import visualizer as viz
+import pca_util
+import evaluator as ev
 
 data_full = np.genfromtxt('../../../data/data_v1/final/training_data_v1_final.csv', delimiter=',')
 
-# Remove the first two columns which include data
+# remove the first two columns which include data
 training = data_full[:,2:]
 
-#Run clustering algorithm
+# run clustering algorithm
 cluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')  
 cluster.fit_predict(training) 
 print(cluster.labels_)
 
-#pdb.set_trace()
+# test cross-validation script from this file
+score = ev.cross_validate(training, 
+						AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward'), 
+						folds = 1, 
+						metric = "silhouette",
+						debug_print = "off")
+print(score)
 
 #Plots for dendograms
 #plt.figure(figsize=(10, 7))  
