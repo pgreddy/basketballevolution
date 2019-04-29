@@ -36,7 +36,7 @@ for k in range(2, 18): # 2 - 25
 print("ideal k: " + str(ideal_k))
 
 
-cluster = GaussianMixture(n_components=k)
+cluster = GaussianMixture(n_components=ideal_k)
 cluster.fit(trans_data)
 cluster_labels = cluster.predict(trans_data)
 print(cluster_labels)
