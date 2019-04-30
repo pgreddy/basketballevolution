@@ -1,0 +1,39 @@
+x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8]                                                         # shots attempted
+x[1] + x[2]                                                                                                   # jump shots attempted
+x[3] + x[4]                                                                                                   # hook shots attempted
+x[5] + x[6]                                                                                                   # layups attempted
+x[7] + x[8]                                                                                                   # dunks attempted
+x[9]                                                                                                          # free throws attempted
+float(x[1]) / (x[1] + x[2])                                                                                   # jump shot percentage
+float(x[3]) / (x[3] + x[4])                                                                                   # hook shot percentage
+float(x[5]) / (x[5] + x[6])                                                                                   # layup percentage
+float(x[7]) / (x[7] + x[8])                                                                                   # dunk percentage
+float(x[1] + x[3] + x[5] + x[7])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                      # total shot percentage
+float(x[1] + x[2])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                    # jump shot proportion
+float(x[3] + x[4])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                    # hook shot proportion
+float(x[5] + x[6])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                    # layup proportion
+float(x[7] + x[8])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                    # dunk proportion
+float(x[9])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                           # free throw rate
+x[10]                                                                                                         # total turnovers
+y[11]                                                                                                         # total fouls drawn
+x[12]                                                                                                         # total rebounds
+float(x[2] + x[4] + x[6] + x[8] + x[10])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])              # total poss. ended (neg)
+float(x[10])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                          # turnover per shot rate
+float(y[11])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                          # fouls per shot rate
+float(x[12])/(x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8])                                          # rebounds per shot rate
+y[1] + y[2]                                                                                                   # jump shots defended
+y[3] + y[4]                                                                                                   # hook shots defended
+y[5] + y[6]                                                                                                   # layups defended
+y[7] + y[8]                                                                                                   # dunks defended
+float(y[1]) / (y[1] + y[2])                                                                                   # jump shot percentage def.
+float(y[5]) / (y[5] + y[6])                                                                                   # layup percentage def.
+y[10]                                                                                                         # total turnovers forced
+x[11]                                                                                                         # total fouls committed
+float(y[1] + y[3] + y[5] + y[7])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                      # total shot percentage def.
+float(y[1] + y[2])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                                    # jump shot proportion def.
+float(y[3] + y[4])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                                    # hook shot proportion def.
+float(y[5] + y[6])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                                    # layup proportion def.
+float(y[7] + y[8])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                                    # dunk proportion def.
+float(y[10])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                                          # foul rate per def. shot
+float(x[11])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                                          # turnover per def. shot
+float(x[12])/(y[1] + y[2] + y[3] + y[4] + y[5] + y[6] + y[7] + y[8])                                          # rebounds per shot defended
