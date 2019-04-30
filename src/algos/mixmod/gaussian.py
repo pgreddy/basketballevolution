@@ -43,3 +43,5 @@ print(cluster_labels)
 
 viz.visualize(trans_data, cluster_labels, two_d = True, three_d = False, plot_name="mixmod_2d")
 viz.visualize(trans_data, cluster_labels, two_d = False, three_d = True, plot_name="mixmod_3d")
+
+np.savetxt("./output/mixmod_scores.csv", scores, delimiter=",")

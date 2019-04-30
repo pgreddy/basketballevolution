@@ -44,6 +44,8 @@ print(cluster.labels_)
 viz.visualize(trans_data, cluster.labels_, two_d = True, three_d = False, plot_name="agglom_2d")
 viz.visualize(trans_data, cluster.labels_, two_d = False, three_d = True, plot_name="agglom_3d")
 
+np.savetxt("./output/agglom_scores.csv", scores, delimiter=",")
+
 #Plots for dendograms
 #plt.figure(figsize=(10, 7))
 #plt.title("Customer Dendograms")

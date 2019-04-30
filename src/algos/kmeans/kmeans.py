@@ -41,3 +41,5 @@ print(kmeans.inertia_)
 
 viz.visualize(trans_data, kmeans.labels_, two_d = True, three_d = False, plot_name="kmeans_2d")
 viz.visualize(trans_data, kmeans.labels_, two_d = False, three_d = True, plot_name="kmeans_3d")
+
+np.savetxt("./output/kmeans_scores.csv", scores, delimiter=",")
