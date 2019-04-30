@@ -21,7 +21,7 @@ print_data_ops () {
 	echo -e "\text..."
 }
 
-if [ $# -gt 4 ]
+if [ \( $# -gt 4 \) -o \( $# -eq 0 \) ]
 then
 	echo "ERROR: Input should be: <algorithm> <data version> OR <name_to_id> <name>"
 	echo ""
